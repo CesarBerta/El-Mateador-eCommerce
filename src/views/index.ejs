@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <title>El Mateador</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <%- include('./partials/iconWhatsapp.ejs') %>
+    
+    <main class="main--home"  id="main">
+        
+        <div class="banner--slides">
+            <img class="banner--slide" id="slider0" src="/images/slides/slide4.jpg">
+        </div>
+        
+        <section class="main--section">
+            <h3 class="main--titulares">Productos Destacados</h3>
+           
+            <div class="main__secction--container">
+                <!-- Ordenar aleatoriamente los productos -->
+                <%discountNo.sort(() => 0.5 - Math.random());
+                // Seleccionar los primeros 6 productos
+                const productosAleatorios = discountNo.slice(0, 6);
+                %>
+                
+                <% productosAleatorios.forEach ((product)=>{ %>
+                    <section class="main__secction--article">
+                        <a class="product--href" style="text-decoration: none;" href="/products/productDetail/<%=product.id%>">
+                            <% for( let i = 0; i < 1; i++ ) { %>
+                                <img class="main__figure--img" id="images" name="images" src="/images/<%= product.producto[i].name %>" alt="<%=product.producto[i].name%>">
+                            <% } %>
+                            <div class="article__div--flex">
+                                <p class="section__article--precio">$<%=product.price %></p>
+                                <p class="section__article--descripcion"> <%=product.name %> </p>
+                            </div>
+                        </a>
+                    </section>
+                <% }) %>
+            </div>
+        </section>    
+
+        <div class="banner--slides">
+            <img class="banner--slide2" id="slider1" src="/images/slides/slide1.jpg">
+        </div>
+
+        <section class="main--section">
+            <h3 class="main--titulares">Ofertas</h3>
+           
+            <div class="main__secction--container">
+                <!-- Ordenar aleatoriamente los productos -->
+                <%discountYes.sort(() => 0.5 - Math.random());
+                // Seleccionar los primeros 6 productos
+                const aleatoriosProductos = discountYes.slice(0, 6);
+                %>
+                
+                <% aleatoriosProductos.forEach ((product)=>{ %>
+                    <section class="main__secction--article">
+                        <a class="product--href" style="text-decoration: none;" href="/products/productDetail/<%=product.id%>">
+                            <% for( let i = 0; i < 1; i++ ) { %>
+                                <% if (product.producto.length > 0) { %>
+                                    <img class="main__figure--img" id="images" name="images" src="/images/<%= product.producto[i].name %>" alt="<%= product.producto[i].name %>">
+                                <% } else { %>
+                                    <img class="main__figure--img" id="images" name="images" src="/images/logo.jpg" alt="Default Image">
+                                <% } %>
+                            <% } %>
+                            <div class="article__div--flex">
+                                <p class="section__article--discount"> <%=product.discount%>% OFF</p>
+                                
+                                <div style="display: flex;">
+                                    <p class="section__article--discountNo"> $<%=product.price%> </p>
+                                    <p class="section__article--discountYes"> $<%=product.discount_price %> </p>
+                                </div>
+                            </div>
+                        </a>
+                    </section>
+                <% }) %>
+            </div>
+        </section>    
+
+
+        <section class="main--section">
+            <h3 class="main__section--send">¿Por qué elegirnos?</h3>  
+            <div class="main__section--bannerSend">
+                          
+                <article class="main__section--articleSend">
+                    <i class="fa-regular fa-credit-card main__icon--send"></i></a>
+                    <h4 class="section--h4">Elegí cómo pagar</h4>
+                    <p class="section--p">Podés pagar con tarjeta, débito o efectivo.</p>                   
+                </article>
+                
+                <article class="main__section--articleSend">
+                    <i class="fa-solid fa-truck-fast main__icon--send"></i>
+                    <h4 class="section--h4">Envío gratis desde $ 30.000</h4>
+                    <p class="section--p">Solo por estar registrado en El Mateador.</p>                   
+                </article>
+                
+                <article class="main__section--articleSend">
+                    <i class="fa-solid fa-lock main__icon--send"></i>
+                    <h4 class="section--h4">Seguridad</h4>
+                    <p class="section--p">Siempre protegemos tus datos. ¿No te gusta? ¡Devolvelo!</p>                 
+                </article>
+                
+            </div>
+        </section>
+    </main>
+    
+    <%- include('./partials/footer.ejs') %>
+   
+    <script src="scripts/bannerHome.js"></script>
+    <script src="scripts/bannerHome.js"></script>
+</body>
+</html>
+
+  
